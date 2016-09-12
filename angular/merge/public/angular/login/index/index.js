@@ -15,7 +15,6 @@ angular.module('login.index', ['ngRoute', 'ngAnimate'])
 		{image: 'img/login/da3.jpg', description: 'Image 02'},
 		{image: 'img/login/da4.jpg', description: 'Image 03'}
 	];
-	
 	$scope.direction = 'left';
 	$scope.currentIndex = 0;
 

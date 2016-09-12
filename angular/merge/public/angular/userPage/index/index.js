@@ -9,7 +9,10 @@ angular.module('userPage.index', ['ngRoute'])
 }])
 .controller('indexCtrl', function($scope, user){
 	user.getuser(function(data){
-		$scope.loginUser = data[0].userID;
+		$scope.loginUser = data[0];
+	});
+	user.getboards(function(data){
+		$scope.adminBoards = data;
 	});
 })
 .factory('user',function($http){
@@ -20,10 +23,19 @@ angular.module('userPage.index', ['ngRoute'])
 				url:'/getuser'
 			}).success(function(data, status, headers, config){
 				console.log("success");
-				console.dir(data);
 				callback(data);
 			}).error(function(data, status, headers, config){
 				console.log("error");
+			});
+		},
+		getboards: function(callback){
+			$http({
+				method: 'get',
+				url:'/getboards'
+			}).success(function(data, status, headers, config){
+				callback(data);
+			}).error(function(data, status, headers, config){
+				console.log('error');
 			});
 		}
 	}

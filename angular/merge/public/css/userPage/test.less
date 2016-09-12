@@ -6,11 +6,12 @@
 .top-padding{
 	padding-top: 10px;
 	padding-left: 15px;	
+	padding-right: 15px;	
 }
 .topMenu{
 	width: 100%;
 	height: 60px;
-	background-color: #000000;
+	background-color: #5C5C5C;
 	.username{
 		.top-padding;
 		.top-font;
@@ -18,8 +19,15 @@
 	.menuWrapper{
 		overflow: hidden;
 		float: left;
+		height: 100%;
 		margin-left: 50px;
+
 		.menu{
+			height: 100%;
+			&:hover{
+				background-color: #A5A5A5;
+			}
+
 			float: left;
 			.top-padding;
 			.top-font;
@@ -33,17 +41,16 @@
 }
 .index_table{
 	margin-top: 30px;
-	width: 500px;
+	width: 80%;
 	position: relative;
 	left: 50%;
-	margin-left: -250px;
+	margin-left: -40%;
 	font-size: 15px;
 	text-align: center;
 }
 .admin_wrapper{
 	.index_wrapper;
 	float: left;
-	
 	table{
 		.index_table;	
 	}
@@ -51,7 +58,6 @@
 .guest_wrapper{
 	.index_wrapper;
 	float: right;
-	
 	table{
 		.index_table;
 	}

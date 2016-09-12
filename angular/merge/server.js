@@ -34,7 +34,6 @@ passport.deserializeUser(function(user, done){
 	mysqlClient.query('select * from user where id = ?', [user.id], function(error, result){
 		done(err, user);
 	});
-
 });
 
 var LocalStrategy = require('passport-local').Strategy;
@@ -53,6 +52,7 @@ passport.use('local-login',
 				}else if(result.length == 0){
 					return done(error);
 				}else if(comp){
+					req.session.id = result[0].id;
 					req.session.userID = result[0].userID;
 					req.session.email = result[0].email;
 					return done(null, result);
@@ -73,7 +73,7 @@ app.use(express.static('public'));
 
 //bodyParser config
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({extended: true}));
 
 //session config
 app.use(session({

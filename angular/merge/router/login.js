@@ -6,8 +6,6 @@ module.exports = function(app, mysqlClient, passport, bcrypt, salt)
 	app.post('/login', function(req, res, next){
 		req.flash("userID");
 		if(req.body.userID.length === 0 || req.body.password.length === 0){
-			req.flash("userID", req.body.userID);
-			req.flash("loginError","Please enter ID or password.");
 			res.redirect('/login');
 		}else{
 			next();
