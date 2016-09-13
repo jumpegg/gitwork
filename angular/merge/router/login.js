@@ -1,5 +1,8 @@
 module.exports = function(app, mysqlClient, passport, bcrypt, salt)
 {
+	app.get('/', function(req, res){
+		res.redirect('/login');
+	});
 	app.get('/login', function(req,res){
 		res.render('login/login.html');
 	});

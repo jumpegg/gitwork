@@ -4,16 +4,12 @@
 	<% include ./header.html %>
 	<meta charset="UTF-8">
 	<title></title>
-	<script>
-		window.currentUser = "<%= session.userID %>";
-		window.userEmail = "<%= session.email %>";
-	</script>
 </head>
 <body>
 	<div class="container">
 		<nav class="navbar navbar-inverse">
 		  <div class="navbar-header">
-		  		<a href="" class="navbar-brand"><%= session.id%> . <%= session.userID%> . <%= session.email%></a>
+		  		<a href="" class="navbar-brand"><%= session.index %>.<%= session.userID%> . <%= session.email%></a>
 		  </div>
 		  <ul class="nav navbar-nav">
 		  		<li class="dropdown">

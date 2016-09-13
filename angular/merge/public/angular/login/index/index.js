@@ -1,7 +1,6 @@
 'use strict';
 
 angular.module('login.index', ['ngRoute', 'ngAnimate'])
-
 .config(['$routeProvider', function($routeProvider, $scope){
 	$routeProvider.when('/',{
 		templateUrl: 'angular/login/index/index.html',

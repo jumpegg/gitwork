@@ -21,15 +21,17 @@ create table board(
 	update_date DATE,
 	delete_date DATE,
 	FOREIGN KEY(`admin_id`) REFERENCES user(`id`) ON DELETE CASCADE
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*에러발생 원인 모름*/
 create table guest(
 	id int not null auto_increment primary key,
-	board int not null,
-	user_id int not null,
-	FOREIGN KEY('board') REFERENCES board('id') ON DELETE CASCADE
-);
+	boardid int not null,
+	userid int not null,
+	FOREIGN KEY('boardid') REFERENCES board('id') ON DELETE CASCADE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 
 /*외래키 없이 생성*/
 create table guest(

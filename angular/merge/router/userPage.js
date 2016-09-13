@@ -2,7 +2,6 @@ module.exports = function(app, mysqlClient, passport, session)
 {
 	app.get('/userPage', function(req, res){
 		res.render('userPage/userPage.html', {
-			console.log(req.session);
 			session: req.session
 		});
 	});
@@ -16,10 +15,11 @@ module.exports = function(app, mysqlClient, passport, session)
 		});
 	});
 	app.get('/getboards', function(req, res){
-		mysqlClient.query('select * from board where admin_id = ?', [req.session.id], function(error, result){
+		mysqlClient.query('select * from board where admin_id = ?', [req.session.index], function(error, result){
 			if(error){
 				console.log('server error');
 			}else{
+				console.log('session id = '+req.session.index);
 				res.json(result);
 			}
 		});
