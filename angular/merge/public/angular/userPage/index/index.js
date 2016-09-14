@@ -14,6 +14,9 @@ angular.module('userPage.index', ['ngRoute'])
 	user.getboards(function(data){
 		$scope.adminBoards = data;
 	});
+	$scope.CreateStudy = function(input){
+		user.setboard(input);
+	};
 })
 .factory('user',function($http){
 	return{
@@ -37,6 +40,21 @@ angular.module('userPage.index', ['ngRoute'])
 			}).error(function(data, status, headers, config){
 				console.log('error');
 			});
+		},
+		setboard: function(input){
+			$http({
+				method: 'post',
+				url:'/newStudy',
+				data: input,
+			}).success(function(data, status, headers, config){
+				if(data == "success"){
+					alert('등록되었습니다.');
+				}else{
+					alert('등록 실패');
+				}
+			}).error(function(data, status, headers, config){
+				alert(status);
+			})
 		}
 	}
 });

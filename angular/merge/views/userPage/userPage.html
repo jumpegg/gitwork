@@ -9,7 +9,7 @@
 	<div class="container">
 		<nav class="navbar navbar-inverse">
 		  <div class="navbar-header">
-		  		<a href="" class="navbar-brand"><%= session.index %>.<%= session.userID%> . <%= session.email%></a>
+		  		<a href="" class="navbar-brand"><%= session.userID%></a>
 		  </div>
 		  <ul class="nav navbar-nav">
 		  		<li class="dropdown">
@@ -38,23 +38,23 @@
 				<h4 class="modal-title" id="createStudyLabel">new study</h4>
 			</div>
 			
-			<form action="">
 				<div class="modal-body">
 					
 					<div>
-						<h4>study name</h4>
-						<input type="text" name="title" placeholder="title">
-						<input type="hidden" name="admin_id" value="<%= session.id%>">
+						<h4>study name</h4>{{newStudy}}
+						<input type="text" placeholder="title" ng-model="newStudy.title">
+						<input type="hidden" value="<%= session.index %>" ng-model="newStudy.admin_id">
 					</div>
-
 					<div>
 						<h4>description</h4>
-						<textarea name="description" cols="30" rows="10"></textarea>
+						<textarea cols="30" rows="10" ng-model="newStudy.description"></textarea>
 					</div>
 
-
 				</div>
-			</form>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" ng-click="CreateStudy(newStudy)">Create</button>
+				</div>
 
 		</div>
 	</div>

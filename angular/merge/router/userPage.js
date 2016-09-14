@@ -24,6 +24,18 @@ module.exports = function(app, mysqlClient, passport, session)
 			}
 		});
 	});
+	app.post('/newStudy', function(req, res){
+		mysqlClient.query('insert into board(admin_id, title, description, create_date) values(?,?,?,now())',
+			[newStudy.admin_id, newStudy.title, newStudy.description],
+			function(error, result){
+				if(error){
+					console.log('study insert error : ', error.message);
+					res.json({result : 'false'});
+				}else{
+					res.json({result : 'success'});
+				}
+			});
+	});
 }
 
 

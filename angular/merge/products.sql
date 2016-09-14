@@ -36,7 +36,7 @@ create table guest(
 /*외래키 없이 생성*/
 create table guest(
 	id int not null auto_increment primary key,
-	board int not null,
+	board_id int not null,
 	user_id int not null
 );
 
