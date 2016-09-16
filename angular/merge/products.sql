@@ -10,7 +10,9 @@ create table user(
 	userID varchar(100) not null,
 	password varchar(100) not null,
 	email varchar(100) not null,
-);
+	available boolean not null,
+	create_date DATE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 create table board(
 	id int not null auto_increment primary key,
@@ -19,29 +21,24 @@ create table board(
 	description TEXT,
 	create_date DATE,
 	update_date DATE,
-	delete_date DATE
-);
+	delete_date DATE,
+	available boolean not null,
+	FOREIGN KEY (admin_id) REFERENCES user(id) ON DELETE CASCADE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*에러발생 원인 모름*/
 create table guest(
 	id int not null auto_increment,
 	board_id int not null,
 	user_id int not null,
+	join_date DATE,
 	PRIMARY KEY (id),
 	FOREIGN KEY (board_id) REFERENCES board(id) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 select * from board where id = (select board_id from guest where user_id = ?)
 
-/*외래키 없이 생성*/
-create table guest(
-	id int not null auto_increment primary key,
-	board_id int not null,
-	user_id int not null
-);
-
-insert into user(userID, password, email) values('jumpegg', '870915', 'jumpegg@naver.com');
-insert into study(admin_id, create_date) values(1, now());
+insert into user(userID, password, email, available, create_date) values('jumpegg', '870915', 'jumpegg@naver.com',true, now());
+insert into user(userID, password, email) values('wonny', 'wonny', 'wonny@naver.com');
 
 /*테이블 구조 보기*/
 desc board;

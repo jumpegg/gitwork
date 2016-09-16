@@ -23,7 +23,7 @@ module.exports = function(app, mysqlClient, passport, bcrypt, salt)
 		res.redirect('/login');
 	});
 	app.post('/sign-up', function(req, res){
-		mysqlClient.query('insert into user(userID, password, email) values(?,?,?)', 
+		mysqlClient.query('insert into user(userID, password, email, available, create_date) values(?,?,?,true,now())', 
 			[req.body.userID, bcrypt.hashSync(req.body.password, salt), req.body.email],
 			function(error, result){
 				if(error){

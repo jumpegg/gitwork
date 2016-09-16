@@ -36,7 +36,7 @@ module.exports = function(app, mysqlClient, passport, session)
 	});
 	app.post('/newStudy', function(req, res){
 		console.log(req.body);
-		mysqlClient.query('insert into board(admin_id, title, description, create_date) values(?,?,?,now())',
+		mysqlClient.query('insert into board(admin_id, title, description, available, create_date) values(?,?,?,true,now())',
 			[req.session.index, req.body.title, req.body.description],
 			function(error, result){
 				if(error){
