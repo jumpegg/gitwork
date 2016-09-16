@@ -19,19 +19,19 @@ create table board(
 	description TEXT,
 	create_date DATE,
 	update_date DATE,
-	delete_date DATE,
-	FOREIGN KEY(`admin_id`) REFERENCES user(`id`) ON DELETE CASCADE
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+	delete_date DATE
+);
 
 /*에러발생 원인 모름*/
 create table guest(
-	id int not null auto_increment primary key,
-	boardid int not null,
-	userid int not null,
-	FOREIGN KEY('boardid') REFERENCES board('id') ON DELETE CASCADE
+	id int not null auto_increment,
+	board_id int not null,
+	user_id int not null,
+	PRIMARY KEY (id),
+	FOREIGN KEY (board_id) REFERENCES board(id) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+select * from board where id = (select board_id from guest where user_id = ?)
 
 /*외래키 없이 생성*/
 create table guest(

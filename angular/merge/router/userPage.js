@@ -24,9 +24,20 @@ module.exports = function(app, mysqlClient, passport, session)
 			}
 		});
 	});
+	app.get('/getjoinboards', function(req, res){
+		mysqlClient.query('select * from board where id = (select board_id from guest where user_id = ?)',[req.session.index],
+			function(error, result){
+				if(error){
+					console.log('server error');
+				}else{
+					res.json(result);
+				}
+			});
+	});
 	app.post('/newStudy', function(req, res){
+		console.log(req.body);
 		mysqlClient.query('insert into board(admin_id, title, description, create_date) values(?,?,?,now())',
-			[newStudy.admin_id, newStudy.title, newStudy.description],
+			[req.session.index, req.body.title, req.body.description],
 			function(error, result){
 				if(error){
 					console.log('study insert error : ', error.message);
