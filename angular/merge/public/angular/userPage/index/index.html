@@ -1,17 +1,17 @@
 <div class="container">
 	<div class="admin_wrapper">
 		<table border="1px solid black">
-			<thead style="text-align: center">
+			<thead>
 				<tr>
-					<th>No</th>
-					<th>이름</th>
-					<th>설명</th>
+					<th style="text-align: center">No</th>
+					<th style="text-align: center">이름</th>
+					<th style="text-align: center">설명</th>
 				</tr>
 			</thead>
 			<tbody ng-repeat = 'board in adminBoards'>
 				<tr>
 					<td>{{$index+1}}</td>
-					<td>{{board.title}}</td>
+					<td><a href="/board/{{board.id}}">{{board.title}}</a></td>
 					<td>{{board.description}}</td>
 				</tr>
 			</tbody>
@@ -19,11 +19,11 @@
 	</div>	
 	<div class="guest_wrapper">
 		<table border="1px solid black">
-			<thead style="text-align: center">
+			<thead>
 				<tr>
-					<th>No</th>
-					<th>이름</th>
-					<th>설명</th>
+					<th style="text-align: center">No</th>
+					<th style="text-align: center">이름</th>
+					<th style="text-align: center">설명</th>
 				</tr>
 			</thead>
 			<tbody ng-repeat = 'joiner in joinboards'>
@@ -35,10 +35,8 @@
 			</tbody>
 		</table>	
 	</div>
+	
 	<div class="notification_wrapper">
-
-		<table>
-			
-		</table>
+		<h1>Notification section</h1>
 	</div>
 </div>

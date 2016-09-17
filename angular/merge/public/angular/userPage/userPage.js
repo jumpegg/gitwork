@@ -13,7 +13,23 @@ angular.module('userPage',[
 	$scope.CreateStudy = function(input){
 		var jinput = JSON.stringify(input);
 		user.setboard(jinput);
+		
+		user.getboards(function(data){
+			$scope.adminBoards = data;
+		});
+
+		$scope.newStudy.title = "";
+		$scope.newStudy.description = "";
 	};
+	user.getuser(function(data){
+		$scope.loginUser = data[0];
+	});
+	user.getboards(function(data){
+		$scope.adminBoards = data;
+	});
+	user.getjoinboards(function(data){
+		$scope.joinboards = data;
+	});
 })
 .factory('user',function($http){
 	return{
@@ -51,7 +67,7 @@ angular.module('userPage',[
 				}
 			}).error(function(data, status, headers, config){
 				alert(status);
-			})
+			});
 		},
 		getjoinboards: function(callback){
 			$http({

@@ -1,8 +1,8 @@
 create table products(
-id int not null auto_increment primary key,
-name varchar(50) not null,
-modelnumber varchar(15) not null,
-series varchar(30) not null
+	id int not null auto_increment primary key,
+	name varchar(50) not null,
+	modelnumber varchar(15) not null,
+	series varchar(30) not null
 );
 
 create table user(
@@ -30,10 +30,61 @@ create table guest(
 	id int not null auto_increment,
 	board_id int not null,
 	user_id int not null,
+	admin_auth boolean not null,
+	nickname varchar(200),
 	join_date DATE,
 	PRIMARY KEY (id),
 	FOREIGN KEY (board_id) REFERENCES board(id) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+create table freetalk(
+	id int not null auto_increment primary key,
+	board_id int not null,
+	user_id int not null,
+	title varchar(1000),
+	content TEXT,
+	cnt int,
+	create_date DATE,
+	update_date DATE,
+	delete_date DATE,
+	available boolean not null
+);
+
+create table notice(
+	id int not null auto_increment primary key,
+	board_id int not null,
+	user_id int not null,
+	title varchar(1000),
+	content TEXT,
+	cnt int,
+	create_date DATE,
+	update_date DATE,
+	delete_date DATE,
+	available boolean not null
+);
+
+create table schedule(
+	id int not null auto_increment primary key,
+	board_id int not null,
+	user_id int not null,
+	title varchar(1000),
+	place varchar(1000),
+	gathering_time varchar(500),
+	t_cost int,
+	e_cost int,
+	cnt int,
+	create_date DATE,
+	update_date DATE,
+	delete_date DATE,
+	available boolean not null
+);
+
+create table attendUser(
+	id int not null auto_increment primary key,
+	schedule_id int not null,
+	user_id int not null
+);
+
 
 select * from board where id = (select board_id from guest where user_id = ?)
 

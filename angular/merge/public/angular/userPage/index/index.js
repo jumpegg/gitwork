@@ -8,14 +8,6 @@ angular.module('userPage.index', ['ngRoute'])
 	});
 }])
 .controller('indexCtrl', function($scope, user){
-	user.getuser(function(data){
-		$scope.loginUser = data[0];
-	});
-	user.getboards(function(data){
-		$scope.adminBoards = data;
-	});
-	user.getjoinboards(function(data){
-		$scope.joinboards = data;
-	});
+
 	
 });

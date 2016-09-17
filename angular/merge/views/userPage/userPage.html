@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<title></title>
 </head>
-<body>
+<body ng-controller='userCtrl'>
 	<div class="container">
 		<nav class="navbar navbar-inverse">
 		  <div class="navbar-header">
@@ -31,7 +31,7 @@
 	</div>
 	
 <!-- Modal -->
-<div class="modal fade" id="createStudy" tabindex="-1" role="dialog" aria-labelledby="createStudyLabel" area-hidden="true" ng-controller='userCtrl'>
+<div class="modal fade" id="createStudy" tabindex="-1" role="dialog" aria-labelledby="createStudyLabel" area-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -53,7 +53,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" ng-click="CreateStudy(newStudy)">Create</button>
+					<button type="button" class="btn btn-primary" ng-click="CreateStudy(newStudy)" data-dismiss="modal">Create</button>
 				</div>
 
 		</div>
