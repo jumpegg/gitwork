@@ -6,6 +6,7 @@ angular.module('login.index', ['ngRoute', 'ngAnimate'])
 		templateUrl: 'angular/login/index/index.html',
 		controller: 'indexCtrl'
 	});
+	
 }])
 .controller('indexCtrl', function($scope){
 	$scope.slides = [

@@ -1,14 +1,25 @@
-module.exports = function(app, mysqlClient, passport)
+module.exports = function(app, mysqlClient, passport, session)
 {
-	app.get('/board/:id', function(req, res){
+	app.get('/boardIndex/:id', function(req, res){
+		console.log("req.params.id is : " + req.params.id);
 		req.session.board_id = req.params.id;
-		console.log("board_id is : " + req.session.board_id);
-		res.render('board.html');
+		console.log("req.session.board_id is : "+ req.session.board_id);
+
+		mysqlClient.query('select * from board where id = ?',[req.session.board_id], function(error, result){
+			req.session.board_name = result[0].title;
+			console.log("board name is : " + req.session.board_name);
+			if(error){
+				console.log("server board info error");
+			}else{
+				res.render('board.html',{session: req.session});
+			}
+		});
+		
 	});
 	app.get('/board/getguest', function(req, res){
 		mysqlClient.query('select * from guest where board_id = ?',[req.session.board_id], function(error, result){
 			if(error){
-				console.log('server error');
+				console.log('server getguest error');
 			}else{
 				res.json(result);
 			}
@@ -17,7 +28,7 @@ module.exports = function(app, mysqlClient, passport)
 	app.get('/board/getfreetalk', function(req, res){
 		mysqlClient.query('select * from freetalk where board_id = ?',[req.session.board_id], function(error, result){
 			if(error){
-				console.log('server error');
+				console.log('server getfreetalk error');
 			}else{
 				res.json(result);
 			}
@@ -26,7 +37,7 @@ module.exports = function(app, mysqlClient, passport)
 	app.get('/board/getnotice', function(req, res){
 		mysqlClient.query('select * from notice where board_id = ?',[req.session.board_id], function(error, result){
 			if(error){
-				console.log('server error');
+				console.log('server getnotice error');
 			}else{
 				res.json(result);
 			}
@@ -35,32 +46,22 @@ module.exports = function(app, mysqlClient, passport)
 	app.get('/board/getschedule', function(req, res){
 		mysqlClient.query('select * from schedule where board_id = ?',[req.session.board_id], function(error, result){
 			if(error){
-				console.log('server error');
+				console.log('server getschedule error');
 			}else{
 				res.json(result);
 			}
 		});
 	});
-	app.get('/board/getattendUser', function(req, res){
-		mysqlClient.query('select * from attendUser where board_id = ?',[req.session.board_id], function(error, result){
+	app.get('/board/getattendUser/:id', function(req, res){
+		mysqlClient.query('select * from attendUser where schedule_id = ?',[req.params.id], function(error, result){
 			if(error){
-				console.log('server error');
+				console.log('server getattendUser error');
 			}else{
 				res.json(result);
 			}
 		});
 	});
-	app.post('/board/newguest', function(req, res){
-		mysqlClient.query('insert into guest(board_id, user_id, admin_auth, nickname, join_date) values(?,?,false,?,now())', 
-			[req.session.board_id, req.session.index, req.body.nickname], 
-			function(error, result){
-				if(error){
-					console.log('server error');
-				}else{
-					res.json({message : 'success'});
-				}
-			});
-	});
+
 	app.post('/board/newfreetalk', function(req, res){
 		mysqlClient.query('insert into freetalk(board_id, user_id, title, content, cnt, create_date, available) values(?,?,?,?,0,now(), true)', 
 			[req.session.board_id, req.session.index, req.body.title, req.body.content], 

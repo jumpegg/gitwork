@@ -11,7 +11,7 @@ module.exports = function(app, mysqlClient)
 	});
 
 	app.get('/test/delete/:id', function(req, res){
-		mysqlClient.query('delete from products where id = ?', [req.param.id], function(error, result){
+		mysqlClient.query('delete from products where id = ?', [req.params.id], function(error, result){
 			if(error){
 				console.log('delete Error');
 			}else{

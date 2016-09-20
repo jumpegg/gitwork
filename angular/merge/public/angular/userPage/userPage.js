@@ -8,6 +8,7 @@ angular.module('userPage',[
   $locationProvider.hashPrefix('!');
 
   $routeProvider.otherwise({redirectTo: '/'});
+  
 }])
 .controller('userCtrl', function($scope, user){
 	$scope.CreateStudy = function(input){
@@ -58,7 +59,7 @@ angular.module('userPage',[
 			$http({
 				method: 'post',
 				url:'/newStudy',
-				data: input,
+				data: input
 			}).success(function(data, status, headers, config){
 				if(data.result == "success"){
 					alert('등록되었습니다.');
@@ -79,5 +80,6 @@ angular.module('userPage',[
 				console.log('error');
 			});
 		}
+
 	}
 });

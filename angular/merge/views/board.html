@@ -15,9 +15,41 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 </head>
-<body ng-controller='board'>
-
-	<div ng-view>
+<body ng-controller='boardCtrl'>
+<div class="container">
+		<nav class="navbar navbar-inverse">
+		  <div class="navbar-header">
+		  		<a href="" class="navbar-brand"><%= session.board_name %></a>
+		  </div>
+		  <ul class="nav navbar-nav">
+		  		<li class="dropdown">
+		  			<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expended="false">게시판</a>
+		  			<ul class="dropdown-menu" role="menu">
+		  				<li><a href="">자유게시판</a></li>
+		  				<li><a href="">공지사항</a></li>
+		  			</ul>
+		  		</li>
+		  		<li class="dropdown">
+		  			<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expended="false">운영</a>
+		  			<ul class="dropdown-menu" role="menu">
+		  				<li><a href="">스케쥴</a></li>
+		  				<li><a href="">회계</a></li>
+		  				<li><a href="">회원관리</a></li>
+		  			</ul>
+		  		</li>
+		  		<li class="dropdown">
+		  			<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expended="false">자료실</a>
+		  			<ul class="dropdown-menu" role="menu">
+		  				<li><a href="">스터디 자료</a></li>
+		  			</ul>
+		  		</li>
+		  		<li class="dropdown">
+		  			<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expended="false">회원가입</a>
+		  		</li>
+		  </ul>
+		</nav>
+	</div>
+	<div class="container" ng-view>
 		
 	</div>
 

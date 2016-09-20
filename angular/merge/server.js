@@ -86,7 +86,7 @@ app.use(session({
 var main = require('./router/main')(app, mysqlClient);
 var login = require('./router/login')(app, mysqlClient, passport, bcrypt, salt);
 var userPage = require('./router/userPage')(app, mysqlClient, passport, session);
-var board = require('./router/board_router')(app, mysqlClient, passport);
+var board = require('./router/board_router')(app, mysqlClient, passport, session);
 
 app.listen(3000, function(){
 	console.log('listening on port 3000!');
