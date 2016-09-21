@@ -41,6 +41,7 @@ create table freetalk(
 	id int not null auto_increment primary key,
 	board_id int not null,
 	user_id int not null,
+	nickname varchar(200) not null,
 	title varchar(1000),
 	content TEXT,
 	cnt int,
@@ -54,6 +55,7 @@ create table notice(
 	id int not null auto_increment primary key,
 	board_id int not null,
 	user_id int not null,
+	nickname varchar(200) not null,
 	title varchar(1000),
 	content TEXT,
 	cnt int,
@@ -67,6 +69,7 @@ create table schedule(
 	id int not null auto_increment primary key,
 	board_id int not null,
 	user_id int not null,
+	nickname varchar(200) not null,
 	title varchar(1000),
 	place varchar(1000),
 	gathering_time varchar(500),
@@ -82,7 +85,8 @@ create table schedule(
 create table attendUser(
 	id int not null auto_increment primary key,
 	schedule_id int not null,
-	user_id int not null
+	user_id int not null,
+	nickname varchar(200) not null
 );
 
 

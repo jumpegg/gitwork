@@ -16,6 +16,24 @@ module.exports = function(app, mysqlClient, passport, session)
 		});
 		
 	});
+	app.get('/board/getboardinfo', function(req, res){
+		mysqlClient.query('select * from board where id = ?',[req.session.board_id], function(error, result){
+			if(error){
+				console.log('server getboardinfo error');
+			}else{
+				res.json(result);
+			}
+		});
+	});
+	app.get('/board/getboardguest', function(req, res){
+		mysqlClient.query('select * from guest where board_id = ? , user_id = ?', [req.session.board_id, req.session.index], function(error, result){
+			if(error){
+				console.log('server getboardguest error');
+			}else{
+				res.json(result);
+			}
+		});
+	});
 	app.get('/board/getguest', function(req, res){
 		mysqlClient.query('select * from guest where board_id = ?',[req.session.board_id], function(error, result){
 			if(error){
@@ -63,8 +81,8 @@ module.exports = function(app, mysqlClient, passport, session)
 	});
 
 	app.post('/board/newfreetalk', function(req, res){
-		mysqlClient.query('insert into freetalk(board_id, user_id, title, content, cnt, create_date, available) values(?,?,?,?,0,now(), true)', 
-			[req.session.board_id, req.session.index, req.body.title, req.body.content], 
+		mysqlClient.query('insert into freetalk(board_id, user_id, nickname, title, content, cnt, create_date, available) values(?,?,?,?,?,0,now(), true)', 
+			[req.session.board_id, req.session.index, req.body.nickname, req.body.title, req.body.content], 
 			function(error, result){
 				if(error){
 					console.log('server error');

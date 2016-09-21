@@ -48,5 +48,3 @@ module.exports = function(app, mysqlClient, passport, session)
 			});
 	});
 }
-
-

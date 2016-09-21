@@ -3,14 +3,21 @@
 angular.module('board',[
 	'ngRoute',
 	'ngAnimate',
-	'board.index'
+	'board.index',
+	'board.account',
+	'board.freetalk',
+	'board.notice',
+	'board.userauth',
+	'board.schedule',
+	'board.studydata',
+	'board.joinuser'
 	])
 .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
 
   $routeProvider.otherwise({redirectTo: '/'});
 }])
-.controller('boardCtrl', function($scope, guestService, freetalkService, noticeService, scheduleService, attendUserService){
+.controller('boardCtrl', function($scope, guestService, freetalkService, noticeService, scheduleService, attendUserService, boardService){
 	guestService.getguest(function(data){
 		$scope.guestList = data;
 	});
@@ -23,8 +30,38 @@ angular.module('board',[
 	scheduleService.getschedule(function(data){
 		$scope.scheduleList = data;
 	});
+	boardService.getboard(function(data){
+		$scope.boardinfo = data[0];
+	});
+	boardService.getboardguest(function(data){
+		$scope.userinfo = data[0];
+	});
 
+	$scope.CreateFreetalk = function(input){
+		var jinput = JSON.stringify(input);
+		freetalkService.setfreetalk(jinput);
+	}
 
+})
+.factory('boardService', function($http){
+	return{
+		getboard: function(callback){
+			$http.get('/board/getboardinfo')
+			.success(function(data){
+				callback(data);
+			}).error(function(status){
+				console.log(status);
+			});
+		},
+		getboardguest: function(callback){
+			$http.get('/board/getboardguest')
+			.success(function(data){
+				callback(data);
+			}).error(function(status){
+				console.log(status);
+			});
+		}
+	}
 })
 .factory('guestService', function($http){
 	return{
