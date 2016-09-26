@@ -6,7 +6,25 @@
 	<title></title>
 </head>
 <body ng-controller='userCtrl'>
-	<div class="container">
+
+<div class="side-bar">
+	<div class="user-title">
+		<%=session.userID%>
+	</div>
+	<div class="list-wrapper">
+		<ul class="menu-list">
+			<li>My profile</li>
+			<li ng-click="toggleMenu()">Study</li>
+			<ul ng-hide="menuStatus">
+				<li>Owner</li>
+				<li>Guest</li>
+			</ul>
+			<li>test</li>
+		</ul>
+	</div>
+
+</div>
+	<!-- <div class="container">
 		<nav class="navbar navbar-inverse">
 		  <div class="navbar-header">
 		  		<a href="" class="navbar-brand"><%= session.userID%></a>
@@ -26,7 +44,7 @@
 		  		</li>
 		  </ul>
 		</nav>
-	</div>
+	</div> -->
 <!-- Modal -->
 <div class="modal fade" id="createStudy" tabindex="-1" role="dialog" aria-labelledby="createStudyLabel" area-hidden="true">
 	<div class="modal-dialog">
@@ -57,7 +75,7 @@
 	</div>
 </div>
 <!-- Modal end -->
-	<div ng-view>
+	<div class="main-panel" ng-view>
 		
 	</div>
 </body>

@@ -1,3 +1,45 @@
+html, body{
+	height: 100%;
+}
+.side-bar{
+	height: 100%;
+	width: 15%;
+	background-color: black;
+	float: left;
+	.user-title{
+		padding-top: 30px;
+		text-align: center;
+		color: #FFFFFF;
+		font-size: 30px;
+		margin-bottom: 20px;
+	}
+	.list-wrapper{
+		padding: 20px;	
+		.menu-list{
+			padding-left: 0px;
+		}
+		ul{
+			padding-left: 10px;
+			list-style-type: none;
+			li{
+				padding-left: 20px;
+				margin-top: 10px;
+				font-size: 15px;
+				width: 100%;
+				height: 30px;
+				color: #FFFFFF;
+				border-bottom: 1px solid #626262;
+				&:hover{
+					border-left: 1px solid #B90000;
+				}
+			}
+		}
+	}
+}
+.main-panel{
+	width: 85%;
+	float: left;
+}
 .top-font{
 	color: #fff;
 	font-size: 30px;
@@ -35,12 +77,11 @@
 	}
 }
 
-.index_wrapper{
-	width: 50%;
-	height: 500px;
-}
+
 .index_table{
-	margin-top: 30px;
+	th{
+		text-align: center;
+	}
 	width: 80%;
 	position: relative;
 	left: 50%;
@@ -48,24 +89,37 @@
 	font-size: 15px;
 	text-align: center;
 }
-.admin_wrapper{
-	.index_wrapper;
+.indexlayout-wrapper{
+	width: 50%;
+	height: 1000px;
 	float: left;
+}
+.admin_wrapper{
+	.tabletitle{
+		text-align: center;
+		padding: 20px;
+	}
+	float: left;
+	width: 100%;
 	table{
 		.index_table;	
 	}
 }
 .guest_wrapper{
-	.index_wrapper;
-	float: right;
+	.tabletitle{
+		text-align: center;
+		padding: 20px;
+	}
+	float: left;
+	width: 100%;
 	table{
 		.index_table;
 	}
 }
 
 .notification_wrapper{
-	width: 100%;
-	height: 500px;
-	clear: both;
+	float: left;
+	width: 50%;
+	height: 1000px;
 	background-color: #BEDBFF;
 }

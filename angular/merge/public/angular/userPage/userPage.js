@@ -2,7 +2,8 @@
 
 angular.module('userPage',[
 	'ngRoute',
-	'userPage.index'
+	'userPage.index',
+	'ngAnimate'
 	])
 .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');
@@ -11,6 +12,10 @@ angular.module('userPage',[
   
 }])
 .controller('userCtrl', function($scope, user){
+	$scope.menuStatus = true;
+	$scope.toggleMenu = function(){
+		$scope.menuStatus = $scope.menuStatus === false ? true: false;
+	};
 	$scope.CreateStudy = function(input){
 		var jinput = JSON.stringify(input);
 		user.setboard(jinput);
@@ -80,6 +85,5 @@ angular.module('userPage',[
 				console.log('error');
 			});
 		}
-
 	}
 });

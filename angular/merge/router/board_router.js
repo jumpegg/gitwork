@@ -1,6 +1,6 @@
 module.exports = function(app, mysqlClient, passport, session)
 {
-	app.get('/boardIndex/:id', function(req, res){
+	app.get('/board/:id', function(req, res){
 		console.log("req.params.id is : " + req.params.id);
 		req.session.board_id = req.params.id;
 		console.log("req.session.board_id is : "+ req.session.board_id);
@@ -26,9 +26,10 @@ module.exports = function(app, mysqlClient, passport, session)
 		});
 	});
 	app.get('/board/getboardguest', function(req, res){
-		mysqlClient.query('select * from guest where board_id = ? , user_id = ?', [req.session.board_id, req.session.index], function(error, result){
+		mysqlClient.query('select * from guest where board_id = ? and user_id = ?', [req.session.board_id, req.session.index], function(error, result){
 			if(error){
 				console.log('server getboardguest error');
+				console.log(error);
 			}else{
 				res.json(result);
 			}

@@ -7,6 +7,14 @@ angular.module('board.studydata', ['ngRoute'])
 		controller: 'studydataCtrl'
 	});
 }])
+.directive("myDirective", function(){
+	return{
+		restrict : "E",
+		scope : {name:"@pName"},
+		template: "<div>Name is : {{name}}</div>"
+		+ "Change name : <input ng-model='name' type='text' />"
+	};
+})
 .controller('studydataCtrl', function($scope){
-
+	$scope.name = "John";
 });
