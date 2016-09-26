@@ -3,6 +3,7 @@
 angular.module('userPage',[
 	'ngRoute',
 	'userPage.index',
+	'userPage.owner',
 	'ngAnimate'
 	])
 .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
@@ -32,6 +33,7 @@ angular.module('userPage',[
 	});
 	user.getboards(function(data){
 		$scope.adminBoards = data;
+		console.log($scope.adminBoards);
 	});
 	user.getjoinboards(function(data){
 		$scope.joinboards = data;

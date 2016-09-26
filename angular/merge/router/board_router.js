@@ -1,6 +1,6 @@
 module.exports = function(app, mysqlClient, passport, session)
 {
-	app.get('/board/:id', function(req, res){
+	app.get('/boardIndex/:id', function(req, res){
 		console.log("req.params.id is : " + req.params.id);
 		req.session.board_id = req.params.id;
 		console.log("req.session.board_id is : "+ req.session.board_id);

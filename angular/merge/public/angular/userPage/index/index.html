@@ -4,18 +4,16 @@
 			<div class="tabletitle">
 				관리중인 페이지 목록
 			</div>
-			<table border="1px solid black">
+			<table>
 				<thead>
 					<tr>
-						<th>No</th>
-						<th>이름</th>
+						<th>study</th>
 						<th>설명</th>
 					</tr>
 				</thead>
 				<tbody ng-repeat = 'board in adminBoards'>
 					<tr>
-						<td>{{$index+1}}</td>
-						<td><a href="/board/{{board.id}}">{{board.title}}</a></td>
+						<td><a href="/boardIndex/{{board.id}}">{{board.title}}</a></td>
 						<td>{{board.description}}</td>
 					</tr>
 				</tbody>
@@ -25,17 +23,15 @@
 			<div class="tabletitle">
 				가입한 페이지 목록
 			</div>
-			<table border="1px solid black">
+			<table>
 				<thead>
 					<tr>
-						<th>No</th>
-						<th>이름</th>
+						<th>study</th>
 						<th>설명</th>
 					</tr>
 				</thead>
 				<tbody ng-repeat = 'joiner in joinboards'>
 					<tr>
-						<td>{{$index+1}}</td>
 						<td>{{joiner.title}}</td>
 						<td>{{joiner.description}}</td>
 					</tr>
