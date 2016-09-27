@@ -1,5 +1,4 @@
 <div class="container">
-	<div class="indexlayout-wrapper">
 		<div class="admin_wrapper">
 			<div class="tabletitle">
 				관리중인 페이지 목록
@@ -8,13 +7,13 @@
 				<thead>
 					<tr>
 						<th>study</th>
-						<th>설명</th>
+						<th>생성일</th>
 					</tr>
 				</thead>
 				<tbody ng-repeat = 'board in adminBoards'>
 					<tr>
 						<td><a href="/boardIndex/{{board.id}}">{{board.title}}</a></td>
-						<td>{{board.description}}</td>
+						<td>{{board.create_date}}</td>
 					</tr>
 				</tbody>
 			</table>	
@@ -27,18 +26,17 @@
 				<thead>
 					<tr>
 						<th>study</th>
-						<th>설명</th>
+						<th>가입일</th>
 					</tr>
 				</thead>
 				<tbody ng-repeat = 'joiner in joinboards'>
 					<tr>
 						<td>{{joiner.title}}</td>
-						<td>{{joiner.description}}</td>
+						<td>{{joiner.create_date}}</td>
 					</tr>
 				</tbody>
 			</table>	
 		</div>
-	</div>
 
 	<div class="notification_wrapper">
 		notification

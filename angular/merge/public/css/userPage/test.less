@@ -6,6 +6,10 @@ html, body{
 	width: 15%;
 	background-color: black;
 	float: left;
+	a{
+		text-decoration: none;
+		color: #FFFFFF;
+	}
 	.user-title{
 		padding-top: 30px;
 		text-align: center;
@@ -39,10 +43,15 @@ html, body{
 		}
 	}
 }
+
 .main-panel{
 	width: 85%;
+	height: 100%;
 	float: left;
 }
+
+//index page
+
 .top-font{
 	color: #fff;
 	font-size: 30px;
@@ -98,17 +107,16 @@ html, body{
 	font-size: 15px;
 	text-align: center;
 }
-.indexlayout-wrapper{
-	width: 50%;
-	float: left;
-}
+
+
 .admin_wrapper{
 	.tabletitle{
 		text-align: center;
 		padding: 20px;
 	}
 	float: left;
-	width: 100%;
+	width: 50%;
+	height: 300px;
 	table{
 		.index_table;	
 	}
@@ -119,7 +127,8 @@ html, body{
 		padding: 20px;
 	}
 	float: left;
-	width: 100%;
+	width: 50%;
+	height: 300px;
 	table{
 		.index_table;
 	}
@@ -127,6 +136,107 @@ html, body{
 
 .notification_wrapper{
 	float: left;
-	width: 50%;
+	width: 100%;
+	height: 200px;
 	background-color: #BEDBFF;
+}
+//profile page
+.myprofile-full{
+	background-color: #E4E4E4;
+	height: 100%;
+}
+.myprofile-title{
+	font-size: 50px;
+	text-align: center;
+	color : #545454;
+	height: 200px;
+	padding-top: 40px;
+}
+.myprofile-infowrapper{
+	width: 90%;
+	position: relative;
+	left: 50%;
+	margin-left: -45%;
+	background-color: #ffffff;
+	padding: 60px;
+	div{
+		height: 100px;
+		color: #464646;
+		font-size: 40px;
+	}
+	.myprofile-userinfo{
+		width: 100%;
+		clear: both;
+		padding: 20px;
+		.myprofile-name{
+			width: 30%;
+			float: left;
+		}
+		.myprofile-content{
+			widht: 70%;
+			float: left;
+		}
+	}
+}
+.myprofile-footer{
+	width: 90%;
+	height: 100px;
+	position: relative;
+	left: 50%;
+	margin-left: -45%;
+	margin-top: 50px;
+	.myprofile-btnwrapper{
+		position: absolute;
+		right: 0px;
+	}
+}
+//owner page
+.owner-topmenu{
+	width:80%;
+	height: 80px;
+	position: relative;
+	left: 50%;
+	margin-left: -40%;
+	button{
+		position: absolute;
+		right: 0px;
+		bottom: 10px;
+	}
+}
+.owner-tablewrapper{
+	table{
+		width: 100%;
+		th{
+			text-align: center;
+			border-top: 1px solid #515151;
+			border-bottom: 1px solid #D4D4D4;
+			border-right: 1px solid #D4D4D4;
+			background-color: #ECECEC;
+			height: 40px;
+		}
+		td{
+			height: 40px;
+			border-bottom: 1px solid #D4D4D4;	
+		}
+	}
+	.owner-tabledes{
+		td{
+			height: 120px;
+		}
+		.board-des{
+			text-align: left;
+			padding-left: 40px;
+			border-right: 1px solid #D4D4D4;
+		}
+		button{
+			width: 80%;
+		}
+	}
+	height: 70%;
+	width: 80%;
+	position: relative;
+	left: 50%;
+	margin-left: -40%;
+	font-size: 15px;
+	text-align: center;
 }

@@ -4,6 +4,7 @@ angular.module('userPage',[
 	'ngRoute',
 	'userPage.index',
 	'userPage.owner',
+	'userPage.myprofile',
 	'ngAnimate'
 	])
 .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
@@ -60,6 +61,31 @@ angular.module('userPage',[
 				callback(data);
 			}).error(function(data, status, headers, config){
 				console.log('error');
+			});
+		},
+		getboard: function(input, callback){
+			$http({
+				method: 'get',
+				url:'/getboard/'+input
+			}).success(function(data, status, headers, config){
+				callback(data);
+			}).error(function(data, status, headers, config){
+				console.log(status);
+			});
+		},
+		updateboard: function(input){
+			$http({
+				method: 'post',
+				url:'/updateStudy',
+				data: input
+			}).success(function(data, status, headers, config){
+				if(data.result == "success"){
+					alert('등록되었습니다.');
+				}else{
+					alert('등록 실패');
+				}
+			}).error(function(data, status, headers, config){
+				alert(status);
 			});
 		},
 		setboard: function(input){

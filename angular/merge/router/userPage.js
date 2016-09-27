@@ -14,6 +14,15 @@ module.exports = function(app, mysqlClient, passport, session)
 			}
 		});
 	});
+	app.get('/getboard/:index', function(req,res){
+		mysqlClient.query('select * from board where id = ?', [req.params.index], function(error, result){
+			if(error){
+				console.log('server error');
+			}else{
+				res.json(result);
+			}
+		});
+	});
 	app.get('/getboards', function(req, res){
 		mysqlClient.query('select * from board where admin_id = ?', [req.session.index], function(error, result){
 			if(error){
@@ -35,7 +44,6 @@ module.exports = function(app, mysqlClient, passport, session)
 			});
 	});
 	app.post('/newStudy', function(req, res){
-		console.log(req.body);
 		mysqlClient.query('insert into board(admin_id, title, description, available, create_date) values(?,?,?,true,now())',
 			[req.session.index, req.body.title, req.body.description],
 			function(error, result){
@@ -44,6 +52,17 @@ module.exports = function(app, mysqlClient, passport, session)
 					res.json({result : 'false'});
 				}else{
 					res.json({result : 'success'});
+				}
+			});
+	});
+	app.post('/updateStudy', function(req, res){
+		mysqlClient.query('update board set title = ?, description = ?, update_date = now() where id = ?',
+			[req.body.title, req.body.description, req.body.id],
+			function(error, result){
+				if(error){
+					res.json({result: 'false'});
+				}else{
+					res.json({result: 'success'});
 				}
 			});
 	});
