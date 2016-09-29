@@ -26,15 +26,13 @@ angular.module('userPage',[
 			$scope.adminBoards = data;
 		});
 
-		$scope.newStudy.title = "";
-		$scope.newStudy.description = "";
 	};
 	user.getuser(function(data){
 		$scope.loginUser = data[0];
+		console.log($scope.loginUser);
 	});
 	user.getboards(function(data){
 		$scope.adminBoards = data;
-		console.log($scope.adminBoards);
 	});
 	user.getjoinboards(function(data){
 		$scope.joinboards = data;
@@ -111,6 +109,21 @@ angular.module('userPage',[
 				callback(data);
 			}).error(function(data, status, headers, config){
 				console.log('error');
+			});
+		},
+		setuserinfo: function(input){
+			$http({
+				method: 'post',
+				url:'/userPage/edit',
+				data: input
+			}).success(function(data, status, headers, config){
+				if(data.message == 'success'){
+					alert('등록되었습니다.');
+				}else{
+					alert('서버에러');
+				};
+			}).error(function(data, status, headers, config){
+				console(status);
 			});
 		}
 	}

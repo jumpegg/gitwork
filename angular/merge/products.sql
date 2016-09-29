@@ -14,6 +14,10 @@ create table user(
 	create_date DATE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+ALTER TABLE user
+ADD (address VARCHAR(200), phone varchar(50), introduce TEXT);
+
+
 create table board(
 	id int not null auto_increment primary key,
 	admin_id int not null,

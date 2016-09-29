@@ -30,8 +30,15 @@
   </table>  
 </div>
 <div class="owner-paging">
-  <pagination boundary-links="true" max-size="10" items-per-page="itemsPerPage" total-items="adminBoards.length" 
-    ng-model="currentPage" ng-change="pageChanged()"></pagination>
+  <ul class="pagination">
+    <li><a ng-click="firstCurrentPage()" href=""><<</a></li>
+    <li><a ng-click="beforeCurrentPage()" href=""><</a></li>
+   <li ng-repeat = 'index in pageIndex'>
+     <a ng-click="setCurrentPage(index)" href="">{{index}}</a>
+   </li>
+   <li><a ng-click="nextCurrentPage()" href="">></a></li>
+   <li><a ng-click="lastCurrentPage()" href="">>></a></li>
+  </ul>
   
 </div>
      <!-- Edit Modal -->

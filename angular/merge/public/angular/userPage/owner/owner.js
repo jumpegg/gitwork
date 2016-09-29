@@ -8,15 +8,6 @@ angular.module('userPage.owner', ['ngRoute'])
 	});
 }])
 .controller('ownerCtrl', function($scope, user){
-	$scope.filteredAdmins = [];
-	$scope.itemsPerPage = 10;
-	$scope.currentPage = 1;
-
-	$scope.figureOutAdmins = function(){
-		var begin = (($scope.currentPage - 1) * $scope.itemsPerPage);
-		var end = begin + $scope.itemsPerPage;
-		$scope.filteredAdmins = $scope.adminBoards.slice(begin, end);
-	};
 
 	$scope.beforeUpdate = function(input){
 		user.getboard(input, function(data){
@@ -32,9 +23,51 @@ angular.module('userPage.owner', ['ngRoute'])
 			$scope.adminBoards = data;
 		});
 	};
-	$scope.pageChanged = function() {
-    $scope.figureOutAdmins();
-  };
+
+	$scope.filteredAdmins = [];
+	$scope.itemsPerPage = 10;
+	$scope.currentPage = 1;
+	$scope.pageIndex = [];
+	$scope.lastPage = Math.ceil($scope.adminBoards.length / $scope.itemsPerPage);
+
+	for(var i = 0; i < Math.ceil($scope.adminBoards.length / $scope.itemsPerPage); i++){
+		$scope.pageIndex.push(i+1);
+	};
+	console.log($scope.pageIndex);
+
+	$scope.figureOutAdmins = function(){
+		var begin = (($scope.currentPage - 1) * $scope.itemsPerPage);
+		var end = begin + $scope.itemsPerPage;
+		$scope.filteredAdmins = $scope.adminBoards.slice(begin, end);
+	};
+
+	$scope.setCurrentPage = function(input){
+		$scope.currentPage = input;
+		$scope.figureOutAdmins();
+	};
+	$scope.beforeCurrentPage = function(){
+		$scope.currentPage--;
+		if($scope.currentPage < 1){
+			$scope.currentPage = 1;
+		};
+		$scope.figureOutAdmins(); 
+	};
+	$scope.nextCurrentPage = function(){
+		$scope.currentPage++;
+		if($scope.currentPage > $scope.lastPage){
+			$scope.currentPage = $scope.lastPage;
+		};
+		$scope.figureOutAdmins();
+	};
+	$scope.firstCurrentPage = function(){
+		$scope.currentPage = 1;
+		$scope.figureOutAdmins();
+
+	};
+	$scope.lastCurrentPage = function(){
+		$scope.currentPage = $scope.lastPage;
+		$scope.figureOutAdmins();
+	};
 
 	$scope.figureOutAdmins();
 });

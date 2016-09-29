@@ -5,6 +5,18 @@ module.exports = function(app, mysqlClient, passport, session)
 			session: req.session
 		});
 	});
+	app.post('/userPage/edit', function(req,res){
+		mysqlClient.query('update user set email = ?, phone = ?, address = ?, introduce = ? where id = ?',
+			[req.body.email, req.body.phone, req.body.address, req.body.introduce, req.session.index],
+			function(error, result){
+				if(error){
+					console.log('server error');
+				}else{
+					console.log('user update success');
+					res.json({message : 'success'});
+				}
+			});
+	});
 	app.get('/getuser', function(req, res){
 		mysqlClient.query('select * from user where userID = ?',[req.session.userID], function(error, result){
 			if(error){
