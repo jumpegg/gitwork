@@ -30,4 +30,6 @@ angular.module('userPage.myprofile', ['ngRoute'])
 		user.setuserinfo(jinput);
 		$location.path("/myprofile");
 	};
+
 });
+

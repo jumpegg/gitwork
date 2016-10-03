@@ -16,9 +16,11 @@
           <td>{{board.title}}</td>
           <td>200</td>
           <td>{{board.create_date}}</td>
-          <td><a href=".collapse{{board.id}}" data-toggle="collapse" aria-expanded="false" aria-controls="collapse{{board.id}}">open</a></td>
+          <td>
+            <a href="" ng-click="show=!show">open</a>
+          </td>
         </tr>
-        <tr class="owner-tabledes collapse collapse{{board.id}}">
+        <tr ng-show=show>
           <td class="board-des" colspan="3">{{board.description}}</td>
           <td>
             <button type="button" data-toggle="modal" data-target="#updateStudy" class="btn btn-default" ng-click="beforeUpdate(board.id)">수정</button><br>
