@@ -13,8 +13,9 @@ angular.module('userPage',[
   $routeProvider.otherwise({redirectTo: '/'});
   
 }])
-.controller('userCtrl', function($scope, user){
+.controller('userCtrl', function($scope, user, paging){
 	$scope.menuStatus = true;
+	
 	$scope.toggleMenu = function(){
 		$scope.menuStatus = $scope.menuStatus === false ? true: false;
 	};
@@ -25,11 +26,10 @@ angular.module('userPage',[
 		user.getboards(function(data){
 			$scope.adminBoards = data;
 		});
-
 	};
+
 	user.getuser(function(data){
 		$scope.loginUser = data[0];
-		console.log($scope.loginUser);
 	});
 	user.getboards(function(data){
 		$scope.adminBoards = data;
@@ -127,4 +127,35 @@ angular.module('userPage',[
 			});
 		}
 	}
+})
+.factory('paging', function(){
+		var paging = {};
+
+		paging.makePage = function(list, currentPage, itemsPerPage){
+			var lastPage = Math.ceil(list.length/itemsPerPage);
+
+			if(currentPage > lastPage){
+				currentPage = lastPage;
+			}else if(currentPage < 1){
+				currentPage = 1;
+			};
+			var pageComponent = {};
+			var filtered = [];
+			var begin = (currentPage-1) * itemsPerPage;
+			var end = begin + itemsPerPage;
+			var pageIndex = [];
+
+			for(var i =0; i<Math.ceil(list.length / itemsPerPage); i++){
+				pageIndex.push(i+1);
+			};
+			
+			pageComponent.list = list.slice(begin, end);
+			pageComponent.lastPage = lastPage;
+			pageComponent.firstPage = 1; 
+			pageComponent.pageIndex = pageIndex;
+			pageComponent.currentPage = currentPage;
+
+			return pageComponent;
+		};
+		return paging;
 });
